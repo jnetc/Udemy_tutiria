@@ -20,9 +20,10 @@ document.querySelector('form').addEventListener('submit', e => {
       if (data.error) {
         msgOne.textContent = data.error;
         msgTwo.textContent = '';
+      } else {
+        msgOne.textContent = data.location;
+        msgTwo.textContent = data.forecast;
       }
-      msgOne.textContent = data.location;
-      msgTwo.textContent = data.forecast;
     })
     .catch(err => err);
 });
