@@ -18,7 +18,8 @@ document.querySelector('form').addEventListener('submit', e => {
   data
     .then(data => {
       if (data.error) {
-        return (msgOne.textContent = data.error);
+        msgOne.textContent = data.error;
+        msgTwo.textContent = '';
       }
       msgOne.textContent = data.location;
       msgTwo.textContent = data.forecast;
