@@ -7,19 +7,17 @@ document.querySelector('form').addEventListener('submit', e => {
 
   const url = `/weather?address=${search.value}`;
 
-  const data = fetch(url)
+  msgOne.textContent = 'Loading...';
+  msgTwo.textContent = '';
+
+  fetch(url)
     .then(result => {
       if (result.ok) {
         return result.json();
       }
     })
-    .catch(err => console.log(err));
-
-  data
     .then(data => {
-
-      msgOne.textContent = 'Loading...';
-      msgTwo.textContent = '';
+      console.log(data);
 
       if (data.error) {
         msgOne.textContent = data.error;
@@ -27,6 +25,5 @@ document.querySelector('form').addEventListener('submit', e => {
         msgOne.textContent = data.location;
         msgTwo.textContent = data.forecast;
       }
-    })
-    .catch(err => err);
+    });
 });
