@@ -17,9 +17,12 @@ document.querySelector('form').addEventListener('submit', e => {
 
   data
     .then(data => {
+
+      msgOne.textContent = 'Loading...';
+      msgTwo.textContent = '';
+
       if (data.error) {
         msgOne.textContent = data.error;
-        msgTwo.textContent = '';
       } else {
         msgOne.textContent = data.location;
         msgTwo.textContent = data.forecast;
