@@ -17,8 +17,6 @@ document.querySelector('form').addEventListener('submit', e => {
       }
     })
     .then(data => {
-      console.log(data);
-
       if (data.error) {
         msgOne.textContent = data.error;
       } else {
