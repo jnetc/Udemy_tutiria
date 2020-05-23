@@ -1,0 +1,14 @@
+<%- include('./templates/header.ejs') %>
+<main>
+  <h1><%= name%></h1>
+  <p>Use this site to get your weather!</p>
+  <form method="post">
+    <input type="text" name="location" placeholder="Location" />
+    <button type="submit">Search</button>
+  </form>
+
+  <p id="one"></p>
+  <p id="two"></p>
+</main>
+<script src="/app.js"></script>
+<%- include('./templates/footer.ejs') %>

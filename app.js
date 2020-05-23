@@ -1,25 +1,24 @@
-const fs = require('fs')
+const express     = require('express')
+const bodyParser  = require('body-parser')
+const path        = require('path')
+const chalk       = require('chalk')
 
-const data = {
-  title: 'Ego is an anemy',
-  author: 'Ryan Holiday'
-}
+// Imports
+const router      = require('./router/index')
 
+const app = express()
 
-const file = JSON.stringify(data, null, 2)
+// Parser
+app.use(bodyParser.urlencoded({ extended: true }))
+// Public path
+app.use(express.static(path.join(__dirname + '/public')))
 
-async function addFile () {
-  try {
-    await fs.promises.access('1-json.json')
-    console.log('access');
-    
-  } catch (error) {
-    
-    console.log('no access');
-    await fs.promises.writeFile('1-json.json', file)
-  }
-}
-addFile()
+// EJS template engine
+app.set('render engine', 'ejs')
+app.set('views', 'view')
 
-const buffer = fs.readFileSync('1-json.json')
-console.log(JSON.parse(buffer));
+// Routers
+app.use(router)
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => console.log(chalk.green.inverse(' Server running... ')))
